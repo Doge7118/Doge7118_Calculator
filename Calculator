@@ -1,27 +1,35 @@
-
-print("Hello, I am a calculator that can solve math problems.")
-
-try:
+def get_input():
+    """Get user input for calculator operation"""
+    try:
         x = float(input("What is the first number? "))
         y = float(input("What is the second number? "))
         z = input("What operation do you want to use? (+, -, *, /): ")
-        
-        if z == "+":
-            result = x + y
-        elif z == "-":
-            result = x - y
-        elif z == "*":
-            result = x * y
-        elif z == "/":
-            if y != 0:
-                result = x / y
-            else:
-                print("Error: No division by zero")
-                exit()
-        else:
-            print("Error: Please use +, -, *, or /")
-            exit()
-        
-        print("The answer is:" ,x, z, y, "=", result)
-except ValueError:
+        return x, y, z
+    except ValueError:
         print("Enter numbers only.")
+        exit()
+
+def compute(x, y, operation):
+    """Perform the calculation based on the operation"""
+    if operation == "+":
+        return x + y
+    elif operation == "-":
+        return x - y
+    elif operation == "*":
+        return x * y
+    elif operation == "/":
+        if y != 0:
+            return x / y
+        else:
+            print("Error: No division by zero")
+            exit()
+    else:
+        print("Error: Please use +, -, *, or /")
+        exit()
+
+# Main program
+print("Hello, I am a calculator that can solve math problems.")
+
+x, y, operation = get_input()
+result = compute(x, y, operation)
+print("The answer is:", x, operation, y, "=", result)
